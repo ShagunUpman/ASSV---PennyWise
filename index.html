@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PennyWise | AI Agents for Smarter Finance</title>
+    <style>
+        :root {
+            --primary: #5762D5;
+            --secondary: #7C4DFF;
+            --accent: #00D8C9;
+            --light: #F4F4F8;
+            --dark: #1E1E2E;
+            --success: #21D59B;
+            --warning: #FF9046;
+            --danger: #FF5370;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(92, 98, 214, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Hero section */
+        .hero {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e9ecff 100%);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .dashboard-preview {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+            transition: all 0.5s;
+        }
+        
+        .dashboard-preview:hover {
+            transform: perspective(1000px) rotateY(0) rotateX(0);
+        }
+        
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .icon-1 {
+            top: 10%;
+            left: 10%;
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        .icon-2 {
+            top: 20%;
+            right: 15%;
+            animation: float 7s infinite ease-in-out 1s;
+        }
+        
+        .icon-3 {
+            bottom: 15%;
+            left: 20%;
+            animation: float 5s infinite ease-in-out 0.5s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        /* Features section */
+        .features {
+            padding: 6rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(92, 98, 214, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            color: var(--primary);
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-desc {
+            color: #666;
+        }
+        
+        /* How it works */
+        .how-it-works {
+            padding: 6rem 0;
+            background-color: #f0f2ff;
+        }
+        
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-desc {
+            color: #666;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 0;
+        }
+        
+        .testimonials-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+        
+        .testimonials-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            min-width: 300px;
+            flex: 0 0 350px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #eee;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-name {
+            font-weight: 600;
+        }
+        
+        .author-title {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-light {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .btn-light:hover {
+            background-color: #f0f0f0;
+            color: var(--secondary);
+        }
+        
+        /* Chat widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(92, 98, 214, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .chat-widget:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-desc {
+            color: #aaa;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.2s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-link {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-link a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-link a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon">P</div>
+                    PennyWise
+                </div>
+                <div class="nav-links">
+                    <a href="http://127.0.0.1:5500/Features.html" class="nav-link">Features</a>
+                    <a href="http://127.0.0.1:5500/HowItWorks.html" class="nav-link">How It Works</a>
+                    <a href="http://127.0.0.1:5500/testimonials.html" class="nav-link">Testimonials</a>
+                    <a href="http://127.0.0.1:5500/Pricing.html" class="nav-link">Pricing</a>
+                    <a href="SignIn.html" class="btn-outline btn">Sign In</a>
+                    <a href="Register.html" class="btn">Get Started</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Make Your Money Work Smarter</h1>
+                    <p class="hero-subtitle">PennyWise uses AI to track your expenses, optimize your budget, and help you achieve your financial goals without the hassle.</p>
+                    <a href="#" class="btn">Start For Free</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://media-hosting.imagekit.io/7227fc18d521475f/image_2025-04-23_130756041-removebg-preview.png?Expires=1840001958&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=gNeun30USOVTQIC8tb6gS~nUTP~JhuKfl6U79FVXhPDz5cXGTTsnjBN602yJPYOOPScIwGyA8FP7KFyGlbgMNjSDwSuPBSi11LUvaIA9-X~yOm~O-4E2a1HBDwKDS2KeR2EGdGqmrc-wZ7xvDb-6prpLgdszPPQmAclcd8xtYoWRbwioVNNWGnYjLZ~VqbbRmrp8MXyyKOPYBqxZK6zlCK1xWN7KPK~FFF~9dUeaJqBbkLsQBMHUXSKKGHDf6Lg-HbUytEd~qiDaBj61mdm~HrA0uvZI6ScVnqBgCpDz4kvvaJ54OyaUDSkTAHK42XlXl9uqcgUWE~IOir~xIR7Jag__" alt="Dashboard Preview" class="dashboard-preview">
+                    <div class="floating-icons">
+                        <div class="floating-icon icon-1">💰</div>
+                        <div class="floating-icon icon-2">📊</div>
+                        <div class="floating-icon icon-3">💡</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Smart Features for Smarter Finance</h2>
+            <p class="section-subtitle">Our AI agents work behind the scenes to make managing your money effortless and effective.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Automated Expense Tracking</h3>
+                    <p class="feature-desc">Our AI automatically categorizes your expenses so you don't have to manually input every transaction.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Smart Budget Recommendations</h3>
+                    <p class="feature-desc">Get personalized monthly budgets based on your income, spending patterns, and financial goals.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Spending Insights & Alerts</h3>
+                    <p class="feature-desc">Receive timely notifications about overspending trends and unusual transactions before they become problems.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Adaptive Learning</h3>
+                    <p class="feature-desc">Our AI continuously learns from your behavior to refine recommendations and predict future spending patterns.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">AI Financial Assistant</h3>

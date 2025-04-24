@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PennyWise Pricing</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px;
+      background-color: #f9fafb;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .pricing-table {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .guest    { background: #9e9e9e; }     /* Grey */
+    .lite     { background: #4caf50; }     /* Green */
+    .pro      { background: #2196f3; }     /* Blue */
+    .premium  { background: #9c27b0; }     /* Purple */
+    .institutional { background: #ff9800; }/* Orange */
+
+    .plan-name {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .features li {
+      margin-bottom: 10px;
+      padding-left: 1.2em;
+      position: relative;
+    }
+
+    .features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: white;
+    }
+
+    .custom-price {
+      font-size: 1em;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<h1>PennyWise Pricing Plans</h1>
+
+<div class="pricing-table">
+  <div class="card guest">
+    <div class="plan-name">🆓 Guest Mode</div>
+    <div class="price">₹0 / month</div>
+    <ul class="features">
+      <li>Max 3 chatbot queries/session</li>
+      <li>1-time budget suggestion</li>
+      <li>Manual input only (no save)</li>
+      <li>No goals or alerts</li>
+      <li>Sample data previews only</li>
+    </ul>
+  </div>
+
+  <div class="card lite">
+    <div class="plan-name">💡 Lite Plan</div>
+    <div class="price">₹99 / month<br>₹999 / year</div>
+    <ul class="features">
+      <li>25 chatbot queries/month</li>
+      <li>Basic budgeting tips</li>
+      <li>30 AI-categorized transactions</li>
+      <li>3 savings goals</li>
+      <li>Basic gamification</li>
+    </ul>
+  </div>
+
+  <div class="card pro">
+    <div class="plan-name">🚀 Pro Plan</div>
+    <div class="price">₹399 / month<br>₹3,999 / year</div>
+    <ul class="features">
+      <li>Unlimited chatbot queries</li>
+      <li>Smart personalized budgets</li>
+      <li>Unlimited transaction tracking</li>
+      <li>Smart alerts & goal tracker</li>
+      <li>Email + chat support</li>
+    </ul>
+  </div>
+
+  <div class="card premium">
+    <div class="plan-name">💎 Premium Plan</div>
+    <div class="price">₹599 / month<br>₹5,999 / year</div>
+    <ul class="features">
+      <li>AI financial coaching</li>
+      <li>Predictive budgeting & insights</li>
+      <li>Advanced trend forecasting</li>
+      <li>Gamification levels</li>
+      <li>Exportable reports + priority support</li>
+    </ul>
+  </div>
+
+  <div class="card institutional">
+    <div class="plan-name">🏢 Institutional</div>
+    <div class="price custom-price">Custom pricing (₹25k–₹1.5L / year)</div>
+    <ul class="features">
+      <li>Unlimited user access</li>
+      <li>Full premium features</li>
+      <li>Admin dashboard</li>
+      <li>Branding & onboarding</li>
+      <li>Financial education modules</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
